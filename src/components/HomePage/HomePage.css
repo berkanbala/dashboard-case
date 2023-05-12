@@ -1,0 +1,29 @@
+.home {
+  text-align: center;
+  padding: 25px 45px;
+}
+
+.title {
+  margin: 10px;
+  color: #040107;
+}
+
+.bas {
+  padding: 10px 20px;
+  background-color: #8a2be2;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bas:hover {
+  opacity: 0.8;
+}
+.lorem {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
