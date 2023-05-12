@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import { App } from "./App";
+import { AppContext } from "./common/context/appContext";
+import { AppRoutes } from "app/routes/appRoutes";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { AuthProvider } from "./components/auth/AuthProvider";
+import "./common/components/i18n";
+import "./index.css";
+import { AllModals } from "common/modals/allModals/allModals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <AppContext>
+      <AppRoutes />
+      <AllModals />
+    </AppContext>
   </React.StrictMode>
 );

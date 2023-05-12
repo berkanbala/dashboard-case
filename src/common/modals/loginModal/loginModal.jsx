@@ -1,26 +1,33 @@
-import "./LoginModal.css";
-import { useAppContext } from "../auth/AuthProvider";
+import "./loginModal.css";
 import { validateLogin } from "../validation";
 import { useTranslation } from "react-i18next";
-import "../../i18n";
+import { useAppContext } from "common/context/appContext";
 
-export const LoginModal = ({ showModal, setShowModal }) => {
+export const LoginModal = () => {
   const handlePropagation = (e) => e.stopPropagation();
   const { t } = useTranslation("translations");
-  const { auth, setAuth, user, setUser, pass, setPass } = useAppContext();
-  const handleModal = () => setShowModal(false);
+  const {
+    auth,
+    setAuth,
+    user,
+    setUser,
+    pass,
+    setPass,
+    loginModalVisible,
+    setLoginModalVisible,
+  } = useAppContext();
+  const handleModal = () => setLoginModalVisible(false);
 
   const proceedLogin = (e) => {
     e.preventDefault();
-    if (!validateLogin(auth.authname, auth.authpasswords)) {
+    if (validateLogin(auth.authname, auth.authpasswords)) {
       return;
     }
-    setShowModal(!showModal);
-
+    setLoginModalVisible(true);
     setAuth(true);
   };
 
-  if (!showModal) return null;
+  if (!loginModalVisible) return null;
 
   return (
     <div onClick={handleModal} className="loginModal">

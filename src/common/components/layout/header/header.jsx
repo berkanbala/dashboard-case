@@ -1,28 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { LoginModal } from "../LoginModal/LoginModal";
 import { useState } from "react";
-import { useAppContext } from "../auth/AuthProvider";
-import { Toggle } from "../toogle";
-import Icontr from "../../images/tr.png";
-import Iconen from "../../images/uk.png";
-import "./Header.css";
-import "../../i18n";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "common/context/appContext";
+import Icontr from "common/media/icons/tr.png";
+import Iconen from "common/media/icons/uk.png";
+import "./header.css";
 
 export const Header = () => {
-  const { auth, user, setAuth } = useAppContext();
-  const [showModal, setShowModal] = useState(false);
+  const { auth, user, setAuth, loginModalVisible, setLoginModalVisible } =
+    useAppContext();
   const [toggle, setToggle] = useState(false);
   const { t, i18n } = useTranslation("translations");
   const changeLanguage = (e) => i18n.changeLanguage(e.target.value);
-  const handleModal = () => setShowModal(!showModal);
+  const handleModal = () => setLoginModalVisible(!loginModalVisible);
   const handleOpenToggle = () => setToggle(!toggle);
   const handleExit = () => setAuth(false);
-  console.log(auth);
+
   return (
     <div className="navbar">
-      <nav className="navbarsub">
+      <div className="navbarsub">
         <div className="navbarsub-list">
           <ul id="myTopnav">
             <li className="title">
@@ -70,7 +66,7 @@ export const Header = () => {
                   <b> {user}</b>
                 </button>
                 <div className="dropdown-content">
-                  <a href="#" onClick={handleExit}>
+                  <a href="#!" onClick={handleExit}>
                     {t("navi.logout")}
                   </a>
                 </div>
@@ -119,17 +115,7 @@ export const Header = () => {
             />
           </li>
         </ul>
-      </nav>
-
-      <LoginModal showModal={showModal} setShowModal={setShowModal} />
-
-      <Toggle
-        toggle={toggle}
-        handleOpenToggle={handleOpenToggle}
-        changeLanguage={changeLanguage}
-        Icontr={Icontr}
-        Iconen={Iconen}
-      />
+      </div>
     </div>
   );
 };
