@@ -1,7 +1,10 @@
-import "./loginModal.css";
+import styles from "./loginModal.module.scss";
 import { validateLogin } from "../validation";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "common/context/appContext";
+import { Input } from "common/components/ui/input/input";
+import Iconx from "common/media/icons/x.png";
+import { Button } from "common/components/ui/button/button";
 
 export const LoginModal = () => {
   const handlePropagation = (e) => e.stopPropagation();
@@ -16,51 +19,54 @@ export const LoginModal = () => {
     loginModalVisible,
     setLoginModalVisible,
   } = useAppContext();
-  const handleModal = () => setLoginModalVisible(false);
+  const handleModal = () => {
+    setLoginModalVisible(false);
+    setUser("");
+    setPass("");
+  };
 
   const proceedLogin = (e) => {
     e.preventDefault();
-    if (validateLogin(auth.authname, auth.authpasswords)) {
+    if (!validateLogin(auth.authname, auth.authpasswords)) {
       return;
     }
-    setLoginModalVisible(true);
+    setLoginModalVisible(false);
+    setUser(user);
     setAuth(true);
   };
 
   if (!loginModalVisible) return null;
 
   return (
-    <div onClick={handleModal} className="loginModal">
-      <div onClick={handlePropagation} className="content">
-        <h2 className="modalTitle"> {t("modal.modalTitle")} </h2>
-        <form onSubmit={proceedLogin} className="modalForm">
-          <label>{t("modal.modalUsername")}: </label>
-          <input
-            className="fname"
-            name="authname"
+    <div onClick={handleModal} className={styles.container}>
+      <div onClick={handlePropagation} className={styles.content}>
+        <div className={styles.modalTitle}> {t("modal.modalTitle")} </div>
+        <form onSubmit={proceedLogin} className={styles.modalForm}>
+          <Input
             type="text"
+            name="authname"
             placeholder={t("modal.modalUser")}
             value={user}
             onChange={(e) => setUser(e.target.value)}
+            required
           />
 
-          <label>{t("modal.modalPasswords")}:</label>
-          <input
-            className="fpassword"
+          <Input
+            type="password"
             name="authpasswords"
-            type="text"
             placeholder={t("modal.modalPlace")}
             value={pass}
             onChange={(e) => setPass(e.target.value)}
+            required
           />
 
-          <button type="submit" className="btn-hover color-3">
+          <Button type="submit" className={styles.button}>
             {t("modal.modalSubmit")}
-          </button>
+          </Button>
         </form>
 
-        <span onClick={handleModal} className="close">
-          <i className="bi bi-x-circle" />
+        <span onClick={handleModal} className={styles.close}>
+          <img src={Iconx} alt="" />
         </span>
       </div>
     </div>

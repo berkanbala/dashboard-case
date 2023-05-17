@@ -4,6 +4,7 @@ import { useFormHook } from "common/hooks/useFormHook";
 import { Header } from "common/components/layout/header/header";
 import { Footer } from "common/components/layout/footer/footer";
 import { Input } from "common/components/ui/input/input";
+import { Button } from "common/components/ui/button/button";
 import styles from "./contact.module.scss";
 
 export const Contact = () => {
@@ -31,7 +32,7 @@ export const Contact = () => {
       <Header />
       <form onSubmit={handleSubmit}>
         <div className={styles.form}>
-          {/* <h1> {t("contact.title")} </h1> */}
+          <h1> {t("contact.title")} </h1>
 
           <Input
             className={styles.formInput}
@@ -40,47 +41,44 @@ export const Contact = () => {
             name="fname"
             value={form.fname}
             onChange={setForm}
-            label={t("contact.firstName")}
+            // label={t("contact.firstName")}
           />
-          {/*
-        <label> {t("contact.firstName")}: </label>
-        <input
-          className="contactName"
-          type="text"
-          placeholder={t("contact.contactPlace")}
-          name="fname"
-          value={form.fname}
-          onChange={setForm}
-        /> */}
-          {/* <label> {t("contact.email")}: </label>
-        <input
-          className="contactEmail"
-          type="email"
-          placeholder={t("contact.contactEmail")}
-          name="email"
-          value={form.email}
-          onChange={setForm}
-        />
-        <label> {t("contact.phoneNumber")}: </label>
-        <input
-          className="contactText"
-          type="text"
-          placeholder={t("contact.contactPhone")}
-          name="phone"
-          value={form.phone}
-          onChange={setForm}
-        />
-        <label> {t("contact.textarea")}: </label>
-        <textarea
-          className={styles.message}
-          placeholder={t("contact.contactText")}
-          name="textarea"
-          value={form.textarea}
-          onChange={setForm}
-        /> */}
-          <button className="btn-hover color-3" type="submit">
+
+          <Input
+            className={styles.formInput}
+            type="email"
+            placeholder={t("contact.contactEmail")}
+            name="email"
+            value={form.email}
+            onChange={setForm}
+            // label={t("contact.email")}
+          />
+
+          <Input
+            className={styles.formInput}
+            type="tel"
+            placeholder={t("contact.contactPhone")}
+            maxlength={"1"}
+            name="phone"
+            pattern="[0-9]{10}"
+            value={form.phone}
+            onChange={setForm}
+            // label={t("contact.phoneNumber")}
+          />
+
+          <Input
+            className={styles.textArea}
+            type="text"
+            placeholder={t("contact.contactText")}
+            name="textarea"
+            value={form.textarea}
+            onChange={setForm}
+            // label={t("contact.textarea")}
+          />
+
+          <Button type="submit" className={styles.button} disabled="disabled">
             {t("contact.button")}
-          </button>
+          </Button>
         </div>
       </form>
 

@@ -11,8 +11,7 @@ export const AppContext = ({ children }) => {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-
-  const { loginModalVisible, setLoginModalVisible } = useModals();
+  const { loginModalVisible, setLoginModalVisible } = useModals(false);
 
   const contextValue = {
     pass,

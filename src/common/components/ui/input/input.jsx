@@ -13,18 +13,20 @@ export const Input = (props) => {
     onChange,
     className,
     placeholder,
+    pattern,
   } = props;
 
   return (
     <div className={clsx(styles.container, className)}>
       {label && <label> {label} </label>}
       <input
-        className={styles.input}
         type={type}
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
+        pattern={pattern}
+        label={label}
       />
       {isIcon && <img onClick={onClick} src={icon} alt="search icon" />}
     </div>
