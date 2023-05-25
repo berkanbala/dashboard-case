@@ -76,9 +76,18 @@ export const Contact = () => {
             // label={t("contact.textarea")}
           />
 
-          <Button type="submit" className={styles.button} disabled="disabled">
-            {t("contact.button")}
-          </Button>
+          <Button
+            type="submit"
+            className={styles.button}
+            text={t("contact.button")}
+            disabled={
+              // form.fname !== "" &&
+              // form.feamil !== "" &&
+              // form.phone !== "" &&
+              // form.text !== ""
+              Object.values(form).some((formValue) => formValue === "")
+            }
+          />
         </div>
       </form>
 

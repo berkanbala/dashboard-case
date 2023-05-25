@@ -32,6 +32,10 @@
       "modalSubmit": "GİRİŞ",
       "modalPlace": "Parola",
       "modalUser": "Ad"
+    },
+    "toggle": {
+      "home": "Anasayfa",
+      "contact": "İletişim"
     }
   }
 }

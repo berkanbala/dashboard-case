@@ -1,38 +1,48 @@
-import styles from "./loginModal.module.scss";
 import { validateLogin } from "../validation";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "common/context/appContext";
 import { Input } from "common/components/ui/input/input";
-import Iconx from "common/media/icons/x.png";
 import { Button } from "common/components/ui/button/button";
+import { useState } from "react";
+import styles from "./loginModal.module.scss";
+import Iconx from "common/media/icons/x.png";
 
 export const LoginModal = () => {
   const handlePropagation = (e) => e.stopPropagation();
+
   const { t } = useTranslation("translations");
+
   const {
-    auth,
+    // auth,
     setAuth,
-    user,
     setUser,
-    pass,
     setPass,
     loginModalVisible,
     setLoginModalVisible,
   } = useAppContext();
-  const handleModal = () => {
-    setLoginModalVisible(false);
-    setUser("");
-    setPass("");
-  };
+
+  const [firstNameValue, setFirstNameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
   const proceedLogin = (e) => {
     e.preventDefault();
-    if (!validateLogin(auth.authname, auth.authpasswords)) {
+    // if (!validateLogin(auth.authname, auth.authpasswords)) {
+    //   return;
+    // }
+    if (!validateLogin(firstNameValue, passwordValue)) {
       return;
     }
+    console.log("state");
     setLoginModalVisible(false);
-    setUser(user);
+    setUser(firstNameValue);
+    setPass(passwordValue);
     setAuth(true);
+    setFirstNameValue("");
+    setPasswordValue("");
+  };
+
+  const handleModal = () => {
+    setLoginModalVisible(false);
   };
 
   if (!loginModalVisible) return null;
@@ -46,8 +56,9 @@ export const LoginModal = () => {
             type="text"
             name="authname"
             placeholder={t("modal.modalUser")}
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            // value={auth.authname}
+            value={firstNameValue}
+            onChange={(e) => setFirstNameValue(e.target.value)}
             required
           />
 
@@ -55,14 +66,20 @@ export const LoginModal = () => {
             type="password"
             name="authpasswords"
             placeholder={t("modal.modalPlace")}
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
+            // value={auth.authpasswords}
+            value={passwordValue}
+            onChange={(e) => setPasswordValue(e.target.value)}
             required
           />
 
-          <Button type="submit" className={styles.button}>
-            {t("modal.modalSubmit")}
-          </Button>
+          <Button
+            type="submit"
+            className={styles.button}
+            text={t("modal.modalSubmit")}
+            disabled={Object.values({ firstNameValue, passwordValue }).some(
+              (formValue) => formValue === ""
+            )}
+          />
         </form>
 
         <span onClick={handleModal} className={styles.close}>

@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "common/context/appContext";
+// import { Button } from "common/components/ui/button/button";
+import { Toggle } from "common/components/ui/toggle/toggle";
 import Icontr from "common/media/icons/tr.png";
 import Iconen from "common/media/icons/uk.png";
 import styles from "./header.module.scss";
-import { Button } from "common/components/ui/button/button";
+import { Input } from "common/components/ui/input/input";
 
 export const Header = () => {
   const {
@@ -68,42 +70,41 @@ export const Header = () => {
           }}
         >
           <li className={styles.toggle} onClick={handleOpenToggle}>
-            {/* <i className="fas fa-align-justify" /> */}
+            <i className="fas fa-align-justify" />
           </li>
 
           {auth ? (
             <li className={styles.dropdown}>
-              <Button className={styles.dropbtn}>
-                <b> {user} </b>
-              </Button>
-
-              {/* <button className={styles.dropbtn}>
-                <b> {user}</b>
-              </button> */}
-
+              <div className={styles.dropbtn}>{user}</div>
               <div className={styles.dropdowncontent}>
                 <span onClick={handleExit}>{t("navi.logout")}</span>
               </div>
             </li>
           ) : (
             <li className={styles.dropdown}>
-              <Button className={styles.dropbtnx} onClick={handleModal}>
-                <b>{t("navi.login")}</b>
-              </Button>
-
-              {/* <button className={styles.dropbtnx} onClick={handleModal}>
-                <b>{t("navi.login")}</b>
-              </button> */}
+              <div className={styles.dropbtnx} onClick={handleModal}>
+                {t("navi.login")}
+              </div>
             </li>
           )}
 
           <li
             className={styles.item}
             style={{
-              marginLeft: "20px",
+              marginBottom: "10px",
+              marginRight: "15px",
+              marginLeft: "15px",
             }}
           >
-            <input
+            {/* <input
+              type="image"
+              value="tr"
+              onClick={changeLanguage}
+              src={Icontr}
+              alt="TR"
+              className={styles.btnx}
+            /> */}
+            <Input
               type="image"
               value="tr"
               onClick={changeLanguage}
@@ -116,10 +117,20 @@ export const Header = () => {
           <li
             className={styles.item}
             style={{
-              marginLeft: "20px",
+              marginBottom: "10px",
+              marginRight: "15px",
+              marginLeft: "15px",
             }}
           >
-            <input
+            {/* <input
+              type="image"
+              value="en"
+              onClick={changeLanguage}
+              src={Iconen}
+              alt="EN"
+              className={styles.btnx}
+            /> */}
+            <Input
               type="image"
               value="en"
               onClick={changeLanguage}
@@ -130,6 +141,13 @@ export const Header = () => {
           </li>
         </ul>
       </div>
+      <Toggle
+        toggle={toggle}
+        handleOpenToggle={handleOpenToggle}
+        changeLanguage={changeLanguage}
+        Icontr={Icontr}
+        Iconen={Iconen}
+      />
     </div>
   );
 };

@@ -14,6 +14,8 @@ export const Input = (props) => {
     className,
     placeholder,
     pattern,
+    alt,
+    src,
   } = props;
 
   return (
@@ -27,6 +29,9 @@ export const Input = (props) => {
         onChange={onChange}
         pattern={pattern}
         label={label}
+        src={src}
+        alt={alt}
+        onClick={onClick}
       />
       {isIcon && <img onClick={onClick} src={icon} alt="search icon" />}
     </div>

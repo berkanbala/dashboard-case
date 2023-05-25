@@ -1,14 +1,20 @@
-import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import styles from "./button.module.scss";
 
 export const Button = (props) => {
-  const { type, onClick, className, user } = props;
-  const { t } = useTranslation("translations");
+  const { type, onClick, className, text, disabled } = props;
 
   return (
-    <div>
-      <button type={type} onClick={onClick} className={className} user={user}>
-        {t("contact.button")}
-      </button>
-    </div>
+    <button
+      type={type}
+      onClick={onClick}
+      className={clsx(
+        styles.container,
+        className,
+        disabled ? styles.disabled : ""
+      )}
+    >
+      {text}
+    </button>
   );
 };

@@ -32,6 +32,10 @@
       "modalSubmit": "LOGİN",
       "modalPlace": "Passwords",
       "modalUser": "First name"
+    },
+    "toggle": {
+      "home": "Home",
+      "contact": "Contact"
     }
   }
 }
