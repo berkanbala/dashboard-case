@@ -1,4 +1,4 @@
-export const validate = (props) => {
+export const validate = (props: any) => {
   if (
     props.fname === "" ||
     props.email === "" ||
@@ -10,7 +10,7 @@ export const validate = (props) => {
   return true;
 };
 
-export const validateLogin = (authname, authpasswords) => {
+export const validateLogin = (authname: any, authpasswords: any) => {
   if (authname === "" || authpasswords === "") {
     return false;
   }

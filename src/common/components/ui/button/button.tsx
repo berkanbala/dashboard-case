@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./button.module.scss";
 
-export const Button = (props) => {
+export const Button = (props: Props) => {
   const { type, onClick, className, text, disabled } = props;
 
   return (
@@ -18,3 +18,11 @@ export const Button = (props) => {
     </button>
   );
 };
+
+interface Props {
+  type: "button" | "submit" | "reset";
+  onClick: () => void;
+  className: string;
+  text: string;
+  disabled: boolean;
+}

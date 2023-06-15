@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./input.module.scss";
 
-export const Input = (props) => {
+export const Input = (props: Props) => {
   const {
     name,
     type,
@@ -14,7 +14,6 @@ export const Input = (props) => {
     className,
     placeholder,
     pattern,
-    alt,
     src,
   } = props;
 
@@ -28,12 +27,25 @@ export const Input = (props) => {
         value={value}
         onChange={onChange}
         pattern={pattern}
-        label={label}
-        src={src}
-        alt={alt}
         onClick={onClick}
+        src={src}
       />
       {isIcon && <img onClick={onClick} src={icon} alt="search icon" />}
     </div>
   );
 };
+
+interface Props {
+  name?: string;
+  type?: string;
+  icon?: string;
+  label?: any;
+  value?: string;
+  isIcon?: boolean;
+  onClick?: any;
+  onChange?: any;
+  className?: string;
+  placeholder?: string;
+  pattern?: string;
+  src?: any;
+}
